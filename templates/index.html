@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block style %}
+    <style>
+      
+    </style>
+{% endblock %}
+
+{% block content %}
+  <!-- # 'fbs', 'restecg', 'trestbps', 'chol', 'age', 'slope','thal' yang dihilangi -->
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4" style="text-align: center; font-weight: bold;">Heart Disease Risk Prediction</h1><br>
+            <form action="/" method="POST">
+                <div class="form-row">
+                  <!-- Age -->
+                  <div class="form-group col-md-4">  
+                    <label for="inputage">Age</label>
+                    <select class="form-control" name="age" id="age">
+                      <option value="0">&lt 55</option>
+                      <option value="1">>= 55</option>
+                    </select>
+                  </div>
+                  <!-- Sex -->
+                  <div class="form-group col-md-4">  
+                    <label for="inputage">Sex</label>
+                    <select class="form-control" name="sex" id="sex">
+                      <option value="0">Male</option>
+                      <option value="1">Female</option>
+                    </select>
+                  </div>
+                  <!-- Chest Pain Type -->
+                  <div class="form-group col-md-4">
+                    <label for="chestpain">Chest Pain Type</label>
+                    <select class="form-control" name="chestpain" id="chestpain">
+                      <option value="0">1 (Typical Angina)</option>
+                      <option value="1">2 (Atypical Angina)</option>
+                      <option value="2">3 (Non-Anginal Pain)</option>
+                      <option value="3">4 (Asymptomatic)</option>
+                    </select>
+                  </div>
+                  <!-- Resting Blood Pressure -->
+                  <div class="form-group col-md-4">
+                    <label for="trestbps">Resting Blood Pressure</label>
+                    <select class="form-control" name="trestbps" id="trestbps">
+                      <option value="0">&lt 90mmHg</option>
+                      <option value="1">90mmHg - 130mmHg</option>
+                      <option value="2">> 130mmHg</option>
+                    </select>
+                  </div>
+                  <!-- serum cholestoral in mg/dl -->
+                  <div class="form-group col-md-4">
+                    <label for="chol">Serum Cholestoral in mg/dl</label>
+                    <select class="form-control" name="chol" id="chol">
+                      <option value="0">&lt 200</option>
+                      <option value="1">200-240</option>
+                      <option value="2">> 240</option>
+                    </select>
+                  </div>
+                  <!-- fasting blood sugar -->
+                  <div class="form-group col-md-4">
+                    <label for="fbs">Fasting Blood Sugar in mg/dl</label>
+                    <select class="form-control" name="fbs" id="fbs">
+                      <option value="0">&lt= 120</option>
+                      <option value="1">> 120</option>
+                    </select>
+                  </div>
+                  <!-- resting electrocardiographic results -->
+                  <div class="form-group col-md-4">
+                    <label for="restecg">Resting Electrocardiographic Results</label>
+                    <select class="form-control" name="restecg" id="restecg">
+                      <option value="0">Normal</option>
+                      <option value="1">Having ST-T wave abnormality</option>
+                      <option value="2">Probable or definite left ventricular hypertrophy by Estes</option>
+                    </select>
+                  </div>
+                  <!-- maximum heart rate achieved -->
+                  <div class="form-group col-md-4">
+                    <label for="thalach">Maximum Heart Rate Achieved</label>
+                    <select class="form-control" name="thalach" id="thalach">
+                      <option value="0">&lt 60</option>
+                      <option value="1">60 - 100</option>
+                      <option value="2">> 100</option>
+                    </select>
+                  </div>
+                  <!-- Exercise induced angina -->
+                  <div class="form-group col-md-4">
+                    <label for="exang">Exercise Induced Angina</label>
+                    <select class="form-control" name="exang" id="exang">
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </select>
+                  </div>
+                  <!-- oldpeak = ST depression induced by exercise relative to rest -->
+                  <div class="form-group col-md-6">
+                    <label for="oldpeak">Oldpeak (ST Depression Induced by Exercise Relative to Rest)</label>
+                    <select class="form-control" name="oldpeak" id="oldpeak">
+                      <option value="0">&lt 1.5</option>
+                      <option value="1">1.5 - 2.55</option>
+                      <option value="2">> 2.55</option>
+                    </select>
+                  </div>
+                  <!-- The slope of the peak exercise ST segment -->
+                  <div class="form-group col-md-6">
+                    <label for="slope">The Slope of The Peak Exercise ST Segment</label>
+                    <select class="form-control" name="slope" id="slope">
+                      <option value="0">Up Sloping</option>
+                      <option value="1">Flat</option>
+                      <option value="2">Down Slopping</option>
+                    </select>
+                  </div>
+                  <!-- number of major vessels (0-3) colored by flourosopy -->
+                  <div class="form-group col-md-6">
+                    <label for="ca">Number of Major Vessels Colored by Glourosopy</label>
+                    <select class="form-control" name="ca" id="ca">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <!-- thal -->
+                  <div class="form-group col-md-6">
+                    <label for="ca">Thal</label>
+                    <select class="form-control" name="thal" id="thal">
+                      <option value="0">3 (Normal)</option>
+                      <option value="1">6 (Fixed Defect)</option>
+                      <option value="2">7 (Reverseable Defect)</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md" style="display: table; text-align: center;">  <!--text-align: right;-->
+                    <!-- <label for="button" style="color: transparent;">.</label><br> -->
+                    {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        {% for msg in messages %}
+                          <!-- <script> alert("{{msg}}");</script> -->
+                          {% if msg == [0] %}
+                            <h2 style="text-align: center; color: green;"> Your are in NOT in risk of heart disease</h2>
+                          {% else %}
+                            <h2 style="text-align: center; color: red;"> Your are in RISK of heart disease</h2>
+                          {% endif %}
+                          <a href="/">Retry!</a>
+                        {% endfor %}
+                      {% else %}
+                        <button type="submit" class="btn btn-primary" style="display: table-cell; vertical-align: bottom;">Find Out!</button>
+                      {% endif %}
+                    {% endwith %}
+                    
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+    
+{% endblock %}
